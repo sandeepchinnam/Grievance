@@ -1,0 +1,57 @@
+<html>
+<head>
+  <title>Contact Us</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+</head>
+<body onload="sendemail();">
+  <div class="container">
+    <div class="card col-md-6 offset-md-3" style="margin-top:50px;">
+      <div class="card-body">
+        <h2>Contact Us</h2>
+        <label for="thename">Name</label>
+        <input type="text" class="form-control" id="thename" placeholder="Enter Name">
+        <label for="themail">Email:</label>
+        <input type="email" class="form-control" id="themail" placeholder="Enter Email">
+       
+        <button class="btn btn-danger btn-sm" style="margin-top:10px;" onCLick="sendemail();">Send</button>
+        <label for="genotp">otp:</label>
+        <input type="number" class="form-control" id="genotp" placeholder="Enter Otp">
+        </form>
+        <button type="button" style="margin-top:10px;" onCLick="verifyOTP();">Send</button>
+      </div>
+    </div>
+  </div>
+<script>
+    function sendemail() 
+    {
+      var userid = "uN-XnRJJizE2VueGD"
+      emailjs.init(userid);
+      var thename = document.getElementById('thename').value;
+      var themail = document.getElementById('themail').value;
+      var validmail = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
+      if (thename == "") 
+      {
+        alert("Please Enter Name");
+      }
+      else 
+      {
+        var contactdetail = 
+        {
+          to_name: thename,
+          to_email: themail,
+        };
+        emailjs.send('service_jmfvrng','template_u9hz2zi', contactdetail).then(function (res) 
+        {
+          alert("Email Sent Successfully");
+        },
+          reason =>
+          {
+            alert("Error Occur");
+          })
+      }
+    }
+  </script>
+</body>
+</html>
